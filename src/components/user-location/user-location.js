@@ -3,7 +3,7 @@ define(['knockout', 'text!./user-location.html', 'core'], function (ko, template
 
     // Subscribe event before component start
     se.sandbox.subscribe("map:created", function (map) {
-        alert(1);
+        alert(1)
         Map = map;
     });
 

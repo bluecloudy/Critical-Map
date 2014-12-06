@@ -1,9 +1,8 @@
-define(['knockout', 'text!./marker-creator.html'], function (ko, templateMarkup) {
+define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templateMarkup, se) {
     var Map = null;
 
     // Subscribe event before component start
     se.sandbox.subscribe("map:created", function (map) {
-        alert(1);
         Map = map;
     });
 

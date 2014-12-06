@@ -3,7 +3,6 @@ define(['knockout', 'text!./filter-form.html', 'core'], function (ko, templateMa
 
     // Subscribe event before component start
     se.sandbox.subscribe("map:created", function (map) {
-        alert(1);
         Map = map;
     });
 
