@@ -14,7 +14,10 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
     // for example cancelling setTimeouts or disposing Knockout subscriptions/computeds.
     Markercreator.prototype.dispose = function () {
     };
-
+	
+	Markercreator.prototype.onSubmit = function(){
+		alert('wtf');
+	}
     return { viewModel: Markercreator, template: templateMarkup };
 
 });
