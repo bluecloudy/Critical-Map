@@ -7,7 +7,9 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
     });
 
     function Markercreator(params) {
-        this.message = ko.observable('Hello from the markerCreator component!');
+        se.sandbox.subscribe("map:datacontext:location-update", {
+
+        });
     }
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,
@@ -16,8 +18,13 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
     };
 	
 	Markercreator.prototype.onSubmit = function(){
-		alert('wtf');
+        se.sandbox.publish("map:datacontext:createNew", {
+            a: '1',
+            b: '2'
+        });
 	}
+
+
     return { viewModel: Markercreator, template: templateMarkup };
 
 });

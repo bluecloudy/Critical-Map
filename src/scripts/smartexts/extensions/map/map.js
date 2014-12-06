@@ -29,7 +29,7 @@
                 },
                 zoomControl: true,
                 zoomControlOptions: {
-                    style: google.maps.ZoomControlStyle.LARGE,
+                    style: google.maps.ZoomControlStyle.SMALL,
                     position: google.maps.ControlPosition.LEFT_BOTTOM
                 },
                 scaleControl: true,
