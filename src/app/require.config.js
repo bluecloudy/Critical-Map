@@ -29,7 +29,7 @@ var require = {
         "map-anchor":           "scripts/smartexts/extensions/map/map-anchor",
         "datacontext":          "scripts/smartexts/extensions/datacontext",
         "OverlappingMarkerSpiderfier": "scripts/OverlappingMarkerSpiderfier/oms.min",
-        "geolocationmarker":     "scripts/maps-utility-library/geolocationmarker",
+        
         "text":                  "bower_modules/requirejs-text/text"
     },
     shim: {
