@@ -1,0 +1,21 @@
+{
+    "name": "bluecloudy/webapi",
+    "description": "description_text",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "author's name",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "2.4.3",
+        "doctrine/orm": "2.4.0-RC2",
+        "gree/jose": "dev-master",
+        "jms/serializer": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
+    }
+}

@@ -28,6 +28,8 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
                     draggable: true
                 });
 
+                se.sandbox.publish("map:setCenter", event.latLng);
+
 //                alert(event.latLng.lat() + ',' + event.latLng.lng());
             });
         });
