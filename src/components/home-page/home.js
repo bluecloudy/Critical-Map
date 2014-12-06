@@ -3,10 +3,15 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
         var self = this;
         self.items = ko.observableArray([]);
         self.Map = null;
+        self.ready = ko.observable(false);
 
         self.userLocation = ko.observable(null);
 
         se.sandbox.subscribe("map:created", function(map){
+            setTimeout(function(){
+                self.ready(true);
+            }, 100);
+
             self.Map = map;
             se.sandbox.publish("map:geolocation:get", self.userLocation);
         });
@@ -16,11 +21,11 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 
             se.sandbox.publish("map:marker:add", {
                 position: position,
-                title: 'Hello World!',
                 draggable: true
 
             });
-            self.Map.panTo(position);
+            se.sandbox.publish("map:setCenter", position);
+            se.sandbox.publish("map:setZoom", 14);
         });
 
     }

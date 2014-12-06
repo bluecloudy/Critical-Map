@@ -13,20 +13,14 @@
 }((typeof window === 'object' && window) || this, function (SE) {
     SE.extension('map', function () {
         var self = this;
+        self.Map = null;
 
         this.createMap = function (element) {
             var mapOptions = {
                 center: { lat: -34.397, lng: 150.644},
                 zoom: 8,
                 mapTypeControl: false,
-                mapTypeControlOptions: {
-                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                    position: google.maps.ControlPosition.BOTTOM_CENTER
-                },
                 panControl: false,
-                panControlOptions: {
-                    position: google.maps.ControlPosition.TOP_RIGHT
-                },
                 zoomControl: true,
                 zoomControlOptions: {
                     style: google.maps.ZoomControlStyle.SMALL,
@@ -38,9 +32,9 @@
                     position: google.maps.ControlPosition.LEFT_BOTTOM
                 }
             };
-            var map = new google.maps.Map(element,mapOptions);
+            self.Map = new google.maps.Map(element,mapOptions);
 
-            self.sandbox.publish('map:created', map);
+            self.sandbox.publish('map:created', self.Map);
         };
 
         var items = [];
@@ -59,5 +53,18 @@
         self.sandbox.subscribe('map:create', self.createMap, {}, this);
         self.sandbox.subscribe('map:removeItem', self.removeItem, {}, this);
         self.sandbox.subscribe('map:addItem', self.addItem, {}, this);
+
+        // This function allow user set map center
+        self.sandbox.subscribe('map:setCenter', function(location){
+            self.Map.panTo(location);
+        }, {}, this);
+
+        self.sandbox.subscribe('map:getCenter', function(func){
+            func(self.Map.getCenter());
+        }, {}, this);
+
+        self.sandbox.subscribe('map:setZoom', function(zoom){
+            self.Map.setZoom(zoom);
+        }, {}, this);
     });
 }));
