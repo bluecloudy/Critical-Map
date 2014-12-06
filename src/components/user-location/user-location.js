@@ -1,4 +1,4 @@
-define(['knockout', 'text!./user-location.html', 'core', 'geolocationmarker'], function (ko, templateMarkup, se) {
+define(['knockout', 'text!./user-location.html', 'core'], function (ko, templateMarkup, se) {
     var Map = null;
     var GeoMarker = null;
 
