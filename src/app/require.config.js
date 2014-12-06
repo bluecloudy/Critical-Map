@@ -8,6 +8,8 @@ var require = {
         "jquery":               "bower_modules/jquery/dist/jquery",
         "knockout":             "bower_modules/knockout/dist/knockout.debug",
         "knockout-projections": "bower_modules/knockout-projections/dist/knockout-projections",
+		"knockout-authenticate": "bower_modules/knockout-authenticate/knockout-authenticate",
+		
         "signals":              "bower_modules/js-signals/dist/signals.min",
         "underscore":           "bower_modules/underscore/underscore",
         "mediator-js":          "bower_modules/mediator-js/mediator.min",
