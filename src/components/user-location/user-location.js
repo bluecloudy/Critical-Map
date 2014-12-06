@@ -9,16 +9,11 @@ define(['knockout', 'text!./user-location.html', 'core'], function (ko, template
     function Userlocation() {
         var self = this;
 
-        self.items = ko.observableArray([]);
-
         self.gotoCurrentLocation = function () {
             se.sandbox.publish("map:geolocation:get", function (position) {
-                if (Map)
-                    Map.panTo(position);
+                se.sandbox.publish("map:setCenter", position);
             });
         };
-
-
     }
 
     return { viewModel: Userlocation, template: templateMarkup };

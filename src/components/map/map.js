@@ -4,6 +4,12 @@ define(['knockout', 'text!./map.html', 'core', 'jquery'], function (ko, template
             $('.map-canvas').each(function(){
                 $(this).height($(window).height());
             })
+
+            $(window).resize(function(){
+                $('.map-canvas').each(function(){
+                    $(this).height($(window).height());
+                })
+            });
         });
     }
 
