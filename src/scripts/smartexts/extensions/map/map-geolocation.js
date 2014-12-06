@@ -32,6 +32,13 @@
 
 
         self.sandbox.subscribe("map:geolocation:get", function (func) {
+            // Store to location store
+            var location = window.localStorage.getItem('userlocation');
+            if(location){
+                location = location.split(',');
+                self.userLocation( new google.maps.LatLng(location[0], location[1]))
+            }
+
             if(self.userLocation()) func(self.userLocation());
 
             // Try HTML5 geolocation
@@ -39,6 +46,10 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     self.userLocation(pos);
+
+                    // Store to location store
+                    window.localStorage.setItem('userlocation', pos.lat() + ',' + pos.lng());
+
                     func(pos);
                 }, function () {
                     handleNoGeolocation(true);

@@ -48,8 +48,6 @@ define([
                 if (map)
                     map.controls[google.maps.ControlPosition[options.position]].push(prepareMapControl(el));
             });
-
-
         }
     };
 
@@ -59,7 +57,7 @@ define([
         .use('map')
         .use('map-events')
         .use('map-markers')
-//        .use('map-oms')
+        .use('map-oms')
         .use('map-polygons')
         .use('map-polylines')
         .use('map-infowindow')

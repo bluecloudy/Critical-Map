@@ -10,7 +10,7 @@
     } else {
         factory();
     }
-}((typeof window === 'object' && window) || this, function (SE, OverlappingMarkerSpiderfier) {
+}((typeof window === 'object' && window) || this, function (SE) {
     SE.extension('map-oms', function () {
         var Map;
         var oms;
