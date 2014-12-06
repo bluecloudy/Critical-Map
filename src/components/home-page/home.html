@@ -1,16 +1,16 @@
-<div data-bind="MapControl: {position: 'TOP_LEFT'}">
+<div data-bind="MapControl: {position: 'TOP_LEFT'}, visible: ready">
     <filter-form></filter-form>
 </div>
-<div data-bind="MapControl: {position: 'LEFT_CENTER'}">
+<div data-bind="MapControl: {position: 'LEFT_CENTER'}, visible: ready">
     <marker-creator></marker-creator>
 </div>
-<div data-bind="MapControl: {position: 'BOTTOM_CENTER'}">
+<div data-bind="MapControl: {position: 'BOTTOM_CENTER'}, visible: ready">
     <user-location></user-location>
 </div>
-<div data-bind="MapControl: {position: 'TOP_CENTER'}">
+<div data-bind="MapControl: {position: 'TOP_CENTER'}, visible: ready">
     <input type="text"/>
 </div>
-<div data-bind="MapControl: {position: 'TOP_RIGHT'}">
+<div data-bind="MapControl: {position: 'TOP_RIGHT'}, visible: ready">
     <list-locations></list-locations>
 </div>
 
