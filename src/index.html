@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Critical Map</title>
+    <!-- build:css -->
+    <link href="bower_modules/components-bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_modules/font-awesome-css/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+<body>
+<div id="page" data-bind="component: { name: route().page, params: route }"></div>
+
+<!-- build:js -->
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="app/require.config.js"></script>
+<script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>
+<!-- endbuild -->
+<!-- Google map info-window template -->
+<script id="infowindow" type="text/html">
+    <div id="info-window" style="min-height: 100px">
+        <!-- ko if: title -->
+        <h3 class="title">
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <!-- ko text: title -->
+            <!-- /ko -->
+        </h3>
+        <!-- /ko -->
+        <!-- ko if: content -->
+        <p class="content" data-bind="html: content">
+        </p>
+        <textarea name="content" id="content" cols="30" rows="10" data-bind="value: content"></textarea>
+        <!-- /ko -->
+    </div>
+</script>
+</body>
+</html>
