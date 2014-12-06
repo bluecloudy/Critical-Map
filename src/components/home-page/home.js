@@ -13,16 +13,22 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
             }, 100);
 
             self.Map = map;
-            se.sandbox.publish("map:geolocation:get", self.userLocation);
 
+            se.sandbox.publish("map:anchor:set", {
+                position: map.getCenter(),
+                draggable: true
+            });
+
+            se.sandbox.publish("map:geolocation:get", self.userLocation);
 
             // Click to set anchor
             se.sandbox.publish("map:event:on", 'click', function(event){
                 se.sandbox.publish("map:anchor:set", {
                     position: event.latLng,
                     draggable: true
-
                 });
+
+//                alert(event.latLng.lat() + ',' + event.latLng.lng());
             });
         });
 

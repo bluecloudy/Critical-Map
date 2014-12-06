@@ -17,8 +17,8 @@
 
         this.createMap = function (element) {
             var mapOptions = {
-                center: { lat: -34.397, lng: 150.644},
-                zoom: 8,
+                center: { lat: 10.82243095364051, lng: 106.62943840026855},
+                zoom: 12,
                 mapTypeControl: false,
                 panControl: false,
                 zoomControl: true,
