@@ -1,3 +1,16 @@
-<h2>list-locations</h2>
+<!--ko if: viewdetail-->
+<div data-bind="with: selectedItem">
+	<div class="marker-title" data-bind="text: happen"></div>
+	<div class="marker-title" data-bind="text: level"></div>
+	<img width="64px" height="64px" data-bind="attr:{src: img}" />  
+</div>
+    
 
-<p data-bind='text: message'></p>
+<!--/ko-->
+	<ul class="list-group" data-bind="foreach: items">
+ 	
+  <li class="list-group-item">
+	  <a href="#" data-bind="click: $parent.onViewDetail, text: $data.happen"></a>
+  </li>
+  
+</ul>

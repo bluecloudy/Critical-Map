@@ -11,13 +11,7 @@
     <input type="text"/>
 </div>
 <div data-bind="MapControl: {position: 'TOP_RIGHT'}">
-    <h3>All Items</h3>
-    <ul class="list-group" data-bind="foreach: items" style="max-height: 300px; overflow: auto">
-        <li class="list-group-item" data-bind="click: $parent.openInfoWindow">
-            <span data-bind="text: name"></span>
-            <span class="label label-info pull-right" data-bind="text: type"></span>
-        </li>
-    </ul>
+    <list-locations></list-locations>
 </div>
 
 <!-- Map -->
