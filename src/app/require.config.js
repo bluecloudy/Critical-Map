@@ -26,7 +26,7 @@ var require = {
         "map-drawing":          "scripts/smartexts/extensions/map/map-drawing",
         "map-style-preset":     "scripts/smartexts/extensions/map/map-style-preset",
         "map-geolocation":     "scripts/smartexts/extensions/map/map-geolocation",
-        "datacontext":          "scripts/smartexts/datacontext",
+        "datacontext":          "scripts/smartexts/extensions/datacontext",
         "OverlappingMarkerSpiderfier": "scripts/OverlappingMarkerSpiderfier/oms.min",
         "text":                 "bower_modules/requirejs-text/text"
     },

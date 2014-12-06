@@ -20,7 +20,7 @@
         }
 
         function createNew(data){
-
+			alert('nghe trong tim dau');
         }
 
         self.sandbox.subscribe('map:datacontext:getLocations', self.getLocations, {}, this);

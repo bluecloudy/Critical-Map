@@ -11,6 +11,7 @@ define([
     'map-drawing',
     'map-style-preset',
     'map-geolocation',
+    'datacontext',
     'map-infowindow'
 ], function(ko, SE){
 
@@ -64,6 +65,7 @@ define([
         .use('map-drawing-shape')
         .use('map-style-preset')
         .use('map-geolocation')
+		.use('datacontext')
         .start();
 
     return se;

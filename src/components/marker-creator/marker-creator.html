@@ -7,7 +7,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="happen">What is happening?</label>
   <div class="col-md-8">                     
-    <textarea class="form-control" id="happen" name="happen"></textarea>
+    <textarea class="form-control" id="happen" name="happen" data-bind="value: happen"></textarea>
   </div>
 </div>
 
@@ -15,12 +15,8 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="level">Level</label>
   <div class="col-md-8">
-    <select id="level" name="level" class="form-control">
-      <option value="1">Notice</option>
-      <option value="2">Warning</option>
-      <option value="3">Emergency</option>
-      <option value="4">Critical</option>
-      <option value="5">High damage</option>
+    <select id="level" name="level" class="form-control" data-bind="options: levels, optionsText: 'name', value: selectedLevel">
+      
     </select>
   </div>
 </div>

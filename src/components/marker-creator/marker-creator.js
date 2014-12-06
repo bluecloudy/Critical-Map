@@ -1,12 +1,41 @@
 define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templateMarkup, se) {
-    var Map = null;
+    
+	
+	
+	var Map = null;
 
+	var cLevel = function(name, id) {
+        this.name = name;
+        this.id = id;
+    };
+	
     // Subscribe event before component start
     se.sandbox.subscribe("map:created", function (map) {
         Map = map;
     });
 
+	
+	
+	  
+	  
     function Markercreator(params) {
+		
+		var self = this;
+		
+		self.happen = ko.observable('');
+		self.level = ko.observable(0);
+		
+		self.selectedLevel = ko.observable();
+		
+		self.levels = ko.observableArray([
+            new cLevel("Notice", 1),
+            new cLevel("Warning", 2),
+            new cLevel("Emergency", 3),
+			new cLevel("Critical", 3),
+			new cLevel("High damage", 4)
+        ]),
+			
+		
         se.sandbox.subscribe("map:datacontext:location-update", {
 
         });
@@ -18,9 +47,15 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
     };
 	
 	Markercreator.prototype.onSubmit = function(){
+		var self = this;
+		
+		
         se.sandbox.publish("map:datacontext:createNew", {
-            a: '1',
-            b: '2'
+            happen: self.happen(),
+            level: self.selectedLevel.name,
+			image: 'image/url',
+			lat: '20',
+			lon: '114'
         });
 	}
 
