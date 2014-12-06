@@ -1,6 +1,7 @@
-#marker-creator{
-	background: #FFFFFF;
-	opacity: 0.8;
-    filter: alpha(opacity=80); /* For IE8 and earlier */
-	padding: 10px;
+#marker-creator {
+    opacity: 0.6
+}
+
+#marker-creator:hover {
+    opacity: 1
 }

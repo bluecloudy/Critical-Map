@@ -1,47 +1,40 @@
-<form class="form-vertical" id="marker-creator" data-bind="submit: onSubmit">
-<fieldset>
+<form class="form-vertical well well-sm" id="marker-creator" data-bind="submit: onSubmit">
+    <fieldset class="">
+        <!-- Textarea -->
+        <div class="form-group">
+            <label class="control-label" for="happen">What is happening?</label>
 
+            <div>
+                <textarea class="form-control" id="happen" name="happen" data-bind="value: happen"></textarea>
+            </div>
+        </div>
 
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="control-label" for="level">Level</label>
 
-<!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="happen">What is happening?</label>
-  <div class="col-md-8">                     
-    <textarea class="form-control" id="happen" name="happen" data-bind="value: happen"></textarea>
-  </div>
-</div>
+            <div>
+                <select id="level" name="level" class="form-control"
+                        data-bind="options: levels, optionsText: 'name', value: selectedLevel">
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="level">Level</label>
-  <div class="col-md-8">
-    <select id="level" name="level" class="form-control" data-bind="options: levels, optionsText: 'name', value: selectedLevel">
-      
-    </select>
-  </div>
-</div>
+                </select>
+            </div>
+        </div>
 
-<!-- File Button --> 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="upload">Image</label>
-  <div class="col-md-8">
-    <input id="upload" name="upload" class="input-file" type="file">
-  </div>
-</div>
+        <!-- File Button -->
+        <div class="form-group">
+            <label class="control-label" for="upload">Image</label>
 
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="submit"></label>
-  <div class="col-md-4">
-    <button id="submit" name="submit" class="btn btn-primary">Apply</button>
-  </div>
-</div>
+            <div>
+                <input id="upload" name="upload" class="input-file" type="file">
+            </div>
+        </div>
 
-</fieldset>
+        <!-- Button -->
+        <div class="form-group">
+            <button id="submit" name="submit" class="btn btn-primary pull-right">Apply</button>
+        </div>
+
+    </fieldset>
 
 </form>
-
-<style>
-    #marker-creator {opacity: 0.6}
-    #marker-creator:hover {opacity: 1}
-</style>

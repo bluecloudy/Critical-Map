@@ -14,12 +14,22 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 
             self.Map = map;
             se.sandbox.publish("map:geolocation:get", self.userLocation);
+
+
+            // Click to set anchor
+            se.sandbox.publish("map:event:on", 'click', function(event){
+                se.sandbox.publish("map:anchor:set", {
+                    position: event.latLng,
+                    draggable: true
+
+                });
+            });
         });
 
 
         self.userLocation.subscribe(function(position){
 
-            se.sandbox.publish("map:marker:add", {
+            se.sandbox.publish("map:anchor:set", {
                 position: position,
                 draggable: true
 
@@ -27,7 +37,6 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
             se.sandbox.publish("map:setCenter", position);
             se.sandbox.publish("map:setZoom", 14);
         });
-
     }
 
 

@@ -11,6 +11,7 @@ define([
     'map-drawing',
     'map-style-preset',
     'map-geolocation',
+    'map-anchor',
     'datacontext',
     'map-infowindow'
 ], function(ko, SE){
@@ -20,6 +21,7 @@ define([
             se.sandbox.publish('map:create', element, this);
         }
     };
+
     ko.bindingHandlers.MapControl = {
         update: function (el, valueAccessor, allValueAccessor, viewModel) {
 
@@ -65,6 +67,7 @@ define([
         .use('map-drawing-shape')
         .use('map-style-preset')
         .use('map-geolocation')
+        .use('map-anchor')
 		.use('datacontext')
         .start();
 

@@ -1,16 +1,15 @@
-<!--ko if: viewdetail-->
-<div data-bind="with: selectedItem">
-	<div class="marker-title" data-bind="text: happen"></div>
-	<div class="marker-title" data-bind="text: level"></div>
-	<img width="64px" height="64px" data-bind="attr:{src: img}" />  
-</div>
-    
+<div class="well well-sm">
+    <!--ko if: viewdetail-->
+    <div data-bind="with: selectedItem">
+        <div class="marker-title" data-bind="text: happen"></div>
+        <div class="marker-title" data-bind="text: level"></div>
+        <img width="64px" height="64px" data-bind="attr:{src: img}" />
+    </div>
+    <!--/ko-->
+    <ul class="list-group" data-bind="foreach: items">
+        <li class="list-group-item">
+            <a href="#" data-bind="click: $parent.onViewDetail, text: $data.happen"></a>
+        </li>
 
-<!--/ko-->
-	<ul class="list-group" data-bind="foreach: items">
- 	
-  <li class="list-group-item">
-	  <a href="#" data-bind="click: $parent.onViewDetail, text: $data.happen"></a>
-  </li>
-  
-</ul>
+    </ul>
+</div>

@@ -25,10 +25,12 @@ var require = {
         "map-polylines":        "scripts/smartexts/extensions/map/map-polylines",
         "map-drawing":          "scripts/smartexts/extensions/map/map-drawing",
         "map-style-preset":     "scripts/smartexts/extensions/map/map-style-preset",
-        "map-geolocation":     "scripts/smartexts/extensions/map/map-geolocation",
+        "map-geolocation":      "scripts/smartexts/extensions/map/map-geolocation",
+        "map-anchor":           "scripts/smartexts/extensions/map/map-anchor",
         "datacontext":          "scripts/smartexts/extensions/datacontext",
         "OverlappingMarkerSpiderfier": "scripts/OverlappingMarkerSpiderfier/oms.min",
-        "text":                 "bower_modules/requirejs-text/text"
+        "geolocationmarker":     "scripts/maps-utility-library/geolocationmarker",
+        "text":                  "bower_modules/requirejs-text/text"
     },
     shim: {
         "bootstrap": { deps: ["jquery"] }
