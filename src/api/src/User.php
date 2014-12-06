@@ -28,9 +28,20 @@ class User {
     /**
      * @ORM\Column(type="string")
      * @var string
+     * @Groups({"details"})
+     */
+    protected $email;
+    /**
+     * @ORM\Column(type="string")
+     * @var string
      */
     protected $password;
-
+    /**
+     * @ORM\Column(type="integer")
+     * @var integer
+     * @Groups({"list", "details"})
+     */
+    protected $created;
     /**
      * @ORM\OneToMany(targetEntity="Location", mappedBy="user")
      * @var Location[]
@@ -57,6 +68,16 @@ class User {
         $this->username = $name;
     }
 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
     public function getPassword()
     {
         return $this->password;
@@ -70,5 +91,15 @@ class User {
     public function addLocation($location)
     {
         $this->locations[] = $location;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created = null)
+    {
+        $this->created = $created ? $created : time();
     }
 } 

@@ -38,6 +38,12 @@ class Location {
      */
     protected $longitude;
     /**
+     * @ORM\Column(type="string")
+     * @var string
+     * @Groups({"list", "details"})
+     */
+    protected $level;
+    /**
      * @ORM\Column(type="integer")
      * @var integer
      * @Groups({"list", "details"})
@@ -46,6 +52,7 @@ class Location {
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="locations")
+     * @Groups({"list", "details"})
      **/
     protected $user;
 

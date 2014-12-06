@@ -20,6 +20,8 @@ $connectionParams = array(
 );
 
 $config = Setup::createConfiguration($isDevMode);
+$config->setProxyDir(__DIR__.'/proxy');
+
 $driver = new AnnotationDriver(new AnnotationReader(), $paths);
 
 // registering noop annotation autoloader - allow all annotations by default

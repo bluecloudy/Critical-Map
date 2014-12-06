@@ -14,30 +14,30 @@ $serializer = SerializerBuilder::create()->build();
 $app = new \Slim\Slim();
 // Add middleware to check access
 $middleWare = new JWSMiddleware();
-$middleWare->exclude('/authenticate');
-$middleWare->exclude('/register');
-$middleWare->exclude('/location');
-$middleWare->exclude('/locations');
+$middleWare->exclude('/v1/authenticate');
+$middleWare->exclude('/v1/register');
+$middleWare->exclude('/v1/locations');
 
 $app->add($middleWare);
 
 # BEGIN LOCATION
-$app->get('/locations', function () use ($app, $entityManager, $serializer) {
+$app->get('/v1/locations', function () use ($app, $entityManager, $serializer) {
     $locations = $entityManager->getRepository('Location')->findAll();
-    $jsonContent = $serializer->serialize($locations, 'json');
+    $jsonContent = $serializer->serialize($locations, 'json', SerializationContext::create()->setGroups(array('list')));
     $app->response->write($jsonContent);
 });
 
-$app->get('/locations/:id', function ($id) use ($app, $entityManager, $serializer) {
+$app->get('/v1/locations/:id', function ($id) use ($app, $entityManager, $serializer) {
     $locations = $entityManager->getRepository('Location')->find($id);
-    $jsonContent = $serializer->serialize($locations, 'json');
+    $jsonContent = $serializer->serialize($locations, 'json', SerializationContext::create()->setGroups(array('details')));
     $app->response->write($jsonContent);
 });
 
-$app->post('/locations', function () use ($app, $entityManager, $serializer) {
+$app->post('/v1/locations', function () use ($app, $entityManager, $serializer) {
     $title = $app->request->post('title');
     $latitude = $app->request->post('latitude');
     $longitude = $app->request->post('longitude');
+    $level = $app->request->post('level');
     /**
      * todo: upload photo
      */
@@ -53,20 +53,20 @@ $app->post('/locations', function () use ($app, $entityManager, $serializer) {
 
 });
 
-$app->put('/locations:id', function () use ($app, $entityManager, $serializer) {
+$app->put('/v1/locations:id', function () use ($app, $entityManager, $serializer) {
 
 });
 
 
 # END LOCATION
 
-$app->get('/users', function () use ($app, $entityManager, $serializer) {
+$app->get('/v1/users', function () use ($app, $entityManager, $serializer) {
     $users = $entityManager->getRepository('User')->findAll();
     $jsonContent = $serializer->serialize($users, 'json');
     $app->response->write($jsonContent);
 });
 
-$app->post('/register', function () use ($app, $entityManager, $serializer) {
+$app->post('/v1/register', function () use ($app, $entityManager, $serializer) {
     $username = $app->request->post('username');
     $password = $app->request->post('password');
 
@@ -89,13 +89,13 @@ $app->post('/register', function () use ($app, $entityManager, $serializer) {
 });
 
 
-$app->get('/user/:id', function ($id) use ($app, $entityManager, $serializer) {
+$app->get('/v1/user/:id', function ($id) use ($app, $entityManager, $serializer) {
     $user = $entityManager->find('User', $id);
     $jsonContent = $serializer->serialize($user, 'json', SerializationContext::create()->setGroups(array('details')));
     $app->response->write($jsonContent);
 });
 
-$app->post('/authenticate', function () use ($app, $entityManager, $serializer) {
+$app->post('/v1/authenticate', function () use ($app, $entityManager, $serializer) {
     $username = $app->request->post('username');
     $password = $app->request->post('password');
 
