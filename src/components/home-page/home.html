@@ -1,23 +1,17 @@
-<div data-bind="MapControl: {position: 'TOP_LEFT'}, visible: ready">
+<div data-bind="MapControl: {position: 'TOP_LEFT'}">
     <filter-form></filter-form>
 </div>
-<div data-bind="MapControl: {position: 'LEFT_CENTER'}, visible: ready">
+<div data-bind="MapControl: {position: 'LEFT_CENTER'}">
     <marker-creator></marker-creator>
 </div>
-<div data-bind="MapControl: {position: 'BOTTOM_CENTER'}, visible: ready">
+<div data-bind="MapControl: {position: 'BOTTOM_CENTER'}">
     <user-location></user-location>
 </div>
-<div data-bind="MapControl: {position: 'TOP_CENTER'}, visible: ready">
-    <search></search>
+<div data-bind="MapControl: {position: 'TOP_CENTER'}">
+    <input type="text"/>
 </div>
-<div data-bind="MapControl: {position: 'TOP_RIGHT'}, visible: ready">
-    <h3>All Items</h3>
-    <ul class="list-group" data-bind="foreach: items" style="max-height: 300px; overflow: auto">
-        <li class="list-group-item" data-bind="click: $parent.openInfoWindow">
-            <span data-bind="text: name"></span>
-            <span class="label label-info pull-right" data-bind="text: type"></span>
-        </li>
-    </ul>
+<div data-bind="MapControl: {position: 'TOP_RIGHT'}">
+    <list-locations></list-locations>
 </div>
 
 <!-- Map -->

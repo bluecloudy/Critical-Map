@@ -52,7 +52,7 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 		
         se.sandbox.publish("map:datacontext:createNew", {
             happen: self.happen(),
-            level: self.selectedLevel.name,
+            level: self.selectedLevel().name,
 			image: 'image/url',
 			lat: '20',
 			lon: '114'

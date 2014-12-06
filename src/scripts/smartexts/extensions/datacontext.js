@@ -20,10 +20,10 @@
         }
 
         function createNew(data){
-			alert('nghe trong tim dau');
+			console.log(data);
         }
 
-        self.sandbox.subscribe('map:datacontext:getLocations', self.getLocations, {}, this);
-        self.sandbox.subscribe('map:datacontext:createNew', self.createNew, {}, this);
+        self.sandbox.subscribe('map:datacontext:getLocations', getLocations, {}, this);
+        self.sandbox.subscribe('map:datacontext:createNew', createNew, {}, this);
     });
 }));
