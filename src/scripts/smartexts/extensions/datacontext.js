@@ -21,6 +21,22 @@
 
         function createNew(data){
 			console.log(data);
+			
+			
+			$.ajax({
+                type: 'POST',
+                data: data,
+                url: '/api/v1/locations',
+                cache:false,
+
+                success: function(response) { 
+                   
+                },
+                error: function(){  },
+            });
+			
+			
+			
         }
 
         self.sandbox.subscribe('map:datacontext:getLocations', getLocations, {}, this);

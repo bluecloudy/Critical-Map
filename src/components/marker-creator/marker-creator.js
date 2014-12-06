@@ -24,6 +24,10 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 		
 		self.happen = ko.observable('');
 		self.level = ko.observable(0);
+		self.lat = ko.observable(0);
+		self.lon = ko.observable(0);
+		
+		
 		
 		self.selectedLevel = ko.observable();
 		
