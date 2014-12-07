@@ -14,9 +14,9 @@
     max-height: 600px;
     width: 500px;
     overflow: auto;
-    margin-right: -345px;
+    margin-left: 0;
 }
 
 .list-locations.active {
-    margin-right: 0px;
+    margin-left: 0px;
 }
