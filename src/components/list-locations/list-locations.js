@@ -49,6 +49,7 @@ define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templat
         };
 
         se.sandbox.publish('map:event:on', 'click', function () {
+            self.selectedItem(null);
             self.viewdetail(false);
         });
 
