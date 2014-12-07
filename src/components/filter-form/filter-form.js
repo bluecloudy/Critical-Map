@@ -21,6 +21,8 @@ define(['knockout', 'text!./filter-form.html', 'core'], function (ko, templateMa
             });
 
         });
+
+        se.sandbox.publish("component:loaded", 'filter-form');
     }
 
     return { viewModel: FilterForm, template: templateMarkup };

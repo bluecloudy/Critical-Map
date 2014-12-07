@@ -21,7 +21,6 @@
             return $.getJSON(config.rest.locations, condition).then(querySuccess).fail(queryFail);
 
             function querySuccess (result){
-                console.log(result);
                 locations(result);
             }
 

@@ -1,5 +1,6 @@
 define(['knockout', 'text!./map.html', 'core', 'jquery'], function (ko, templateMarkup, se, $) {
-    function Map(params) {
+
+    function Map() {
         se.sandbox.subscribe('map:created', function(){
             $('.map-canvas').each(function(){
                 $(this).height($(window).height());
@@ -11,6 +12,8 @@ define(['knockout', 'text!./map.html', 'core', 'jquery'], function (ko, template
                 })
             });
         });
+
+        se.sandbox.publish("component:loaded", 'map');
     }
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,

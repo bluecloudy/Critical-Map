@@ -12,5 +12,6 @@
 <div data-bind="MapControl: {position: 'BOTTOM_CENTER'}, visible: ready">
     <user-location></user-location>
 </div>
-
+<!--ko if: loadCompleted-->
 <map></map>
+<!--/ko-->

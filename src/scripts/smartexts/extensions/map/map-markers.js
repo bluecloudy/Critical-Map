@@ -32,11 +32,11 @@
             data.map = Map;
             var marker = new google.maps.Marker(data);
 
-            // Add marker to map object
-            self.sandbox.publish('map:addItem', marker);
-
             // Notify item added
             self.sandbox.publish('map:marker:onAdd', marker);
+
+            // Add marker to map object
+            self.sandbox.publish('map:addItem', marker);
 
             if(callback && callback.constructor != Object){
                 callback(marker);
@@ -49,12 +49,14 @@
             condition.type = 'marker';
             // Find marker
             var marker = self.utils.findWhere(items, condition);
+
+            // Notify item removed
+            self.sandbox.publish('map:marker:onRemove', marker);
+
             if(marker){
                 self.sandbox.publish('map:removeItem', marker);
                 marker.setMap(null);
             }
-            // Notify item removed
-            self.sandbox.publish('map:marker:onRemove', marker);
         }, {}, this);
 
         // Find marker

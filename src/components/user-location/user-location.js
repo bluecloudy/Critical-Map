@@ -22,6 +22,8 @@ define(['knockout', 'text!./user-location.html', 'core'], function (ko, template
 
             });
         };
+
+        se.sandbox.publish("component:loaded", 'user-location');
     }
 
     return { viewModel: Userlocation, template: templateMarkup };

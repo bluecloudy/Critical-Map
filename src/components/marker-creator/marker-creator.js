@@ -16,7 +16,6 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
     });
 
     se.sandbox.subscribe("map:anchor:location-update", function(location){
-        console.log(Anchor);
         Anchor = location;
     });
 	
@@ -42,9 +41,9 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 			new cLevel("Critical", 3),
 			new cLevel("High damage", 4)
         ]);
-			
-		
 
+
+        se.sandbox.publish("component:loaded", 'marker-creator');
     }
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,
