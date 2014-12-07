@@ -1,6 +1,36 @@
 <a href="#" class="btn btn-default" data-bind="click: toggleFilter"><i class="fa fa-align-justify"></i></a>
 <!--ko if: filterActive-->
-<form action="#">
-    asahsakjhdkajhds
-</form>
+
+
+
+            <!-- Multiple Checkboxes -->
+            <div class="form-group">
+
+                <div class="col-md-8">
+
+
+
+
+                    Available Items:
+                    <div data-bind="foreach: levels">
+                        <input type="checkbox" data-bind="value: $data.id(), checked: $data.selected(), click: $parent.toggleAssociation" />
+                        <span data-bind="text: '&nbsp;' + $data.name()"></span>
+                        <br/>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-8 control-label" for="clearall"></label>
+                <div class="col-md-4">
+                    <button id="clearall" name="clearall" class="btn btn-primary">Clear All</button>
+                </div>
+            </div>
+
+
 <!--/ko-->
