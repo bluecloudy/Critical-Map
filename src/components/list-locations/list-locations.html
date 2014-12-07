@@ -1,10 +1,6 @@
 <div class="well well-sm list-locations" data-bind="css: {'active': viewdetail}">
     <div class="row">
-        <div class="col-lg-4  col-sm-4">
-            <div class="list-group" data-bind="foreach: items">
-                <a href="#" class="list-group-item" data-bind="click: $parent.onViewDetail, css: {'active': $parent.selectedItem() == $data}, text: $data.title"></a>
-            </div>
-        </div>
+
         <!--ko if: viewdetail-->
         <div class="col-lg-8 col-sm-8" data-bind="with: selectedItem">
             <div class="panel">
@@ -31,6 +27,11 @@
             </div>
         </div>
         <!--/ko-->
+        <div class="col-lg-4  col-sm-4">
+            <div class="list-group" data-bind="foreach: items">
+                <a href="#" class="list-group-item" data-bind="click: $parent.onViewDetail, css: {'active': $parent.selectedItem() == $data}, text: $data.title"></a>
+            </div>
+        </div>
     </div>
 
 </div>
