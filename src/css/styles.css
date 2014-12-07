@@ -1,11 +1,63 @@
+/*Start Marker-creator*/
 #marker-creator {
-    opacity: 0.6
+    opacity: 0.85;
+    width: 300px;
 }
-
+form#marker-creator * {
+    font-size: 11px !important;
+}
 #marker-creator:hover {
     opacity: 1
 }
+#marker-creator .form-group:not(.col-xs-12) {
+    margin-bottom: 0;
+}
+#marker-creator select#level,
+.upload-file,
+#marker-creator [type="file"],
+.upload-file span,
+#marker-creator [name="submit"] {
+    height: 25px;
+    line-height: 25px;
+}
 
+#marker-creator select#level {
+    padding: 0;
+    border-radius: 0;
+}
+.upload-file {
+    position: relative;
+}
+#marker-creator [type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 99;
+    width: 100%;
+}
+.upload-file span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4d90fe;
+    z-index: 1;
+    color: #fff;
+    display: block;
+    text-align: center;
+}
+
+#marker-creator [name="submit"] {
+    background-color: #4d90fe;
+    border-radius: 0;
+    border: none;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 0;
+}
+
+/*Start List-locations*/
 .list-locations {
     transition-property: all;
     transition-duration: .5s;
@@ -45,7 +97,7 @@ ul.result-list li:hover {
 }
 .list-locations img {
     float: left;
-    width: 45px;
+    width: 32px;
     margin: 0 10px 0 0;
 }
 ul.result-list li a {
