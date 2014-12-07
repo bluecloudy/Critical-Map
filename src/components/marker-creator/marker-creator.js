@@ -45,6 +45,17 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 			
 		
 
+<<<<<<< HEAD
+        });
+		
+		
+		
+		se.sandbox.publish("map:anchor:get", function (latLng) {
+        self.lat(latLng.lat());
+        self.lon(latLng.lng());
+ }, this);
+=======
+>>>>>>> origin/master
     }
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,
@@ -59,6 +70,11 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
         se.sandbox.publish("map:datacontext:createNew", {
             title: self.happen(),
             level: self.selectedLevel().name,
+<<<<<<< HEAD
+			image: 'image/url',
+			lat: self.lat(),
+			lon: self.lon()
+=======
 			photo: 'photo/url',
 			latitude: Anchor.lat(),
 			longitude: Anchor.lng()
@@ -69,6 +85,7 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
             data.position = new google.maps.LatLng(item.latitude, item.longitude);
 
             se.sandbox.publish('map:marker:add', data);
+>>>>>>> origin/master
         });
 	}
 
