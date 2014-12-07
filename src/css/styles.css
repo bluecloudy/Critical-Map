@@ -5,3 +5,18 @@
 #marker-creator:hover {
     opacity: 1
 }
+
+.list-locations {
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    min-height: 400px;
+    max-height: 600px;
+    width: 500px;
+    overflow: auto;
+    margin-right: -345px;
+}
+
+.list-locations.active {
+    margin-right: 0px;
+}

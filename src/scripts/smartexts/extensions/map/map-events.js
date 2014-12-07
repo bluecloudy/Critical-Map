@@ -14,11 +14,20 @@
     SE.extension('map-events', function (){
         var Map;
         var self = this;
+        var queue = [];
+
         this.on = function(event_name, object, handler){
             if(arguments.length > 3){
                 return google.maps.event.addListener(object, event_name, handler);
             }else{
-                return google.maps.event.addListener(Map, event_name, object);
+                if(Map){
+                    return google.maps.event.addListener(Map, event_name, object);
+                }else{
+                    queue.push({
+                        event_name: event_name,
+                        object: object
+                    });
+                }
             }
         };
         this.off = function(event_name, object){
@@ -35,6 +44,9 @@
         // Map response
         self.sandbox.subscribe("map:created", function(map){
             Map = map;
+            self.utils.each(queue, function(_queue){
+                self.on(_queue.event_name, _queue.object);
+            });
         }, this);
     });
 }));

@@ -1,42 +1,63 @@
-define(['knockout', 'text!./list-locations.html'], function(ko, templateMarkup) {
+define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templateMarkup, se) {
 
-    var marker = function(happen, level, img) {
+    var marker = function (data) {
+        this.title      = data.title || '';
+        this.level      = data.level || '';
+        this.img        = data.img || '';
+        this.position   = data.position || '';
+        this.latitude   = data.latitude || '';
+        this.longitude   = data.longitude || '';
+    };
 
-
-        this.happen = happen;
-        this.level = level;
-        this.img = img;
-    }
-
-    function ListLocations(params) {
+    function ListLocations() {
         var self = this;
+        self.selectedItem = ko.observable();
+        self.items = ko.observableArray([]);
 
-        //list marker
-		self.selectedItem = ko.observable();
-        self.items = ko.observableArray([
-            new marker('nguoi dep', 'Notice', 'http://s.f10.img.vnexpress.net/2014/12/06/nguoi-dep-duoi-17m-de-tao-bat-ngo-dem-chung-ket-hoa-hau-vn-1417842674_180x108.jpg'),
-            new marker('ngoi choi', 'Notice', 'http://l.f26.img.vnecdn.net/2014/12/06/giaxanggiam-1417849350_490x294.jpg'),
-            new marker('ngoi choi', 'Notice', 'http://l.f26.img.vnecdn.net/2014/12/06/giaxanggiam-1417849350_490x294.jpg'),
-            new marker('ngoi choi', 'Notice', 'http://l.f26.img.vnecdn.net/2014/12/06/giaxanggiam-1417849350_490x294.jpg'),
-        ]);
+        self.loadData = function(conditions){
+            var items = ko.observableArray([]);
+            items.subscribe(function(items){
+                se.utils.each(items, function(item){
+                    var data = item;
+                    data.position = new google.maps.LatLng(item.latitude, item.longitude);
+                    se.sandbox.publish('map:marker:add', data);
+                });
+            });
 
-        
+            se.sandbox.publish('map:datacontext:find', conditions, items, this);
 
+        };
+
+
+        se.sandbox.subscribe('map:data-update', function(items){
+            self.items([]);
+            se.utils.each(items, function(item){
+                self.items.push(new marker(item));
+            });
+
+        });
 
         //true-> view marker detail
         self.viewdetail = ko.observable(false);
-			
-			
-		self.onViewDetail = function(item) {
 
-			self.selectedItem(item);
-			self.viewdetail(true);
+        self.onViewDetail = function (item) {
+            self.selectedItem(item);
+            self.viewdetail(true);
 
-		}
+            // Panto marker
+            se.sandbox.publish('map:setCenter', item.position, this);
+        };
+
+        se.sandbox.publish('map:event:on', 'click', function () {
+            self.selectedItem(null);
+            self.viewdetail(false);
+        });
+
+       self.loadData({});
 
     }
-   
-    ListLocations.prototype.dispose = function() {};
+
+    ListLocations.prototype.dispose = function () {};
 
     return {
         viewModel: ListLocations,

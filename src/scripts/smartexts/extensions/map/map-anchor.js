@@ -19,7 +19,7 @@
          */
         self.anchorPoint = ko.observable(null);
 
-         // Map response
+        // Map response
         self.sandbox.subscribe("map:created", function (map) {
             Map = map;
         }, this);
@@ -27,18 +27,24 @@
 
         // This function allow people create/edit an anchor marker in map
         self.sandbox.subscribe("map:anchor:set", function (data, callback) {
-            if(!self.anchorPoint()){
+            if (!self.anchorPoint()) {
                 data.map = Map;
                 data.icon = './images/markers/male-2.png';
                 data.title = "Where we go?";
 
                 var marker = new google.maps.Marker(data);
                 self.anchorPoint(marker);
-            }else{
+
+                self.sandbox.publish('map:event:on', 'dragend', marker, function(event){
+                    self.sandbox.publish("map:anchor:location-update", event.latLng);
+                });
+            } else {
                 self.anchorPoint().setPosition(data.position);
             }
 
-            if(callback && callback.constructor != Object){
+            self.sandbox.publish("map:anchor:location-update", data.position);
+
+            if (callback && callback.constructor != Object) {
                 callback(marker);
             }
         }, this);

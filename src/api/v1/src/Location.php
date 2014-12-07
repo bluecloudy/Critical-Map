@@ -100,15 +100,25 @@ class Location {
         $this->created = $created ? $created : time();
     }
 
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
     public function setUser($user)
     {
         $user->addLocation($this);
         $this->user = $user;
-    }
-
-    public function getReporter()
-    {
-        return $this->user;
     }
 
 } 
