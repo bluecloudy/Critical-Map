@@ -2,20 +2,37 @@
     'use strict';
     // CommonJS
     if (typeof exports === 'object' && module) {
-        module.exports = factory(require('smartexts'));
+        module.exports = factory(require('smartexts'), require('jquery'), require('config'));
         // AMD
     } else if (typeof define === 'function' && define.amd) {
-        define(['smartexts'], factory);
+        define(['smartexts', 'jquery', 'config'], factory);
         // Browser
     } else {
-        factory();
+        factory(root.SE, root.jQuery, root.Config);
     }
-}((typeof window === 'object' && window) || this, function (SE) {
+}((typeof window === 'object' && window) || this, function (SE, $, config) {
     SE.extension('datacontext', function () {
         var self = this;
+        self.loadedItems = [];
 
 
-        function getLocations(func){
+        // This function allow people find all location base on current location or address
+        function find(condition, locations){
+            return $.getJSON(config.rest.locations, condition).then(querySuccess).fail(queryFail);
+
+            function querySuccess (result){
+                console.log(result);
+                locations(result);
+            }
+
+            function queryFail (error){
+                alert(error)
+            }
+        }
+
+
+
+        function getLocations(filter, func){
 
         }
 
@@ -23,22 +40,10 @@
 			console.log(data);
 			
 			
-			$.ajax({
-                type: 'POST',
-                data: data,
-                url: '/api/v1/locations',
-                cache:false,
 
-                success: function(response) { 
-                   
-                },
-                error: function(){  },
-            });
-			
-			
-			
         }
 
+        self.sandbox.subscribe('map:datacontext:find', find, {}, this);
         self.sandbox.subscribe('map:datacontext:getLocations', getLocations, {}, this);
         self.sandbox.subscribe('map:datacontext:createNew', createNew, {}, this);
     });

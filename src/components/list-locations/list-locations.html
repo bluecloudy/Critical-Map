@@ -1,15 +1,38 @@
-<div class="well well-sm">
-    <!--ko if: viewdetail-->
-    <div data-bind="with: selectedItem">
-        <div class="marker-title" data-bind="text: happen"></div>
-        <div class="marker-title" data-bind="text: level"></div>
-        <img width="64px" height="64px" data-bind="attr:{src: img}" />
+<div class="well well-sm list-locations" data-bind="css: {'active': viewdetail}">
+    <div class="row">
+        <div class="col-lg-4  col-sm-4">
+            <ul class="list-group" data-bind="foreach: items">
+                <li class="list-group-item" data-bind="click: $parent.onViewDetail">
+                    <a href="#" data-bind="text: $data.title"></a>
+                </li>
+            </ul>
+        </div>
+        <!--ko if: viewdetail-->
+        <div class="col-lg-8 col-sm-8" data-bind="with: selectedItem">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="marker-title" data-bind="text: title"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="marker-title" data-bind="text: level"></div>
+                    <img width="64px" height="64px" data-bind="attr:{src: img}" />
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    Comments
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li>Comment 1</li>
+                        <li>Comment 2</li>
+                        <li>Comment 3</li>
+                    </ul>
+                    <textarea name="comment" id="comment" cols="30" rows="3" placeholder="Place a comment..."></textarea>
+                </div>
+            </div>
+        </div>
+        <!--/ko-->
     </div>
-    <!--/ko-->
-    <ul class="list-group" data-bind="foreach: items">
-        <li class="list-group-item">
-            <a href="#" data-bind="click: $parent.onViewDetail, text: $data.happen"></a>
-        </li>
 
-    </ul>
 </div>

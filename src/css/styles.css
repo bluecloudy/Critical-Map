@@ -5,3 +5,14 @@
 #marker-creator:hover {
     opacity: 1
 }
+
+.list-locations {
+    height: 600px;
+    width: 500px;
+    overflow: auto;
+    margin-right: -345px;
+}
+
+.list-locations.active {
+    margin-right: 0px;
+}
