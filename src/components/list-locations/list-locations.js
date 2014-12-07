@@ -21,6 +21,7 @@ define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templat
                     var data = item;
                     data.position = new google.maps.LatLng(item.latitude, item.longitude);
                     se.sandbox.publish('map:marker:add', data);
+                    self.items.push(new marker(data));
                 });
             });
 
@@ -30,10 +31,10 @@ define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templat
 
 
         se.sandbox.subscribe('map:data-update', function(items){
-            self.items([]);
-            se.utils.each(items, function(item){
-                self.items.push(new marker(item));
-            });
+//            self.items([]);
+//            se.utils.each(items, function(item){
+//                self.items.push(new marker(item));
+//            });
 
         });
 

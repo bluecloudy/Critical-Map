@@ -4,7 +4,6 @@ define(['knockout', 'text!./search.html', 'core'], function (ko, templateMarkup,
     // Subscribe event before component start
     se.sandbox.subscribe("map:created", function (map) {
 
-        alert(1);
         var input = /** @type {HTMLInputElement} */(
             document.getElementById('pac-input'));
 

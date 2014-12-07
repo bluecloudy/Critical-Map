@@ -17,8 +17,39 @@ $middleWare = new JWSMiddleware();
 $middleWare->exclude('/authenticate');
 $middleWare->exclude('/register');
 $middleWare->exclude('/locations');
+$middleWare->exclude('/sample');
 
 $app->add($middleWare);
+
+
+$app->get('/sample', function () use ($app, $entityManager, $serializer) {
+    for($i = 0; $i < 500; $i++){
+        $title = 'Test Event: ' .$i;
+        $latitude = rand(10, 15);
+        $longitude = rand(100, 120);
+        $level =  'Critical';
+        /**
+         * todo: upload photo
+         */
+//    $photo = $_FILES['photo'];
+
+        $location = new Location();
+        $location->setTitle($title);
+        $location->setLatitude($latitude);
+        $location->setLongitude($longitude);
+        $location->setLongitude($longitude);
+        $location->setLevel($level);
+        $location->setCreated(time());
+
+        $user =  $user = $entityManager->getRepository('User')->find(1);
+        $location->setUser($user);
+        $entityManager->persist($location);
+        $entityManager->flush();
+    }
+
+
+});
+
 
 # BEGIN LOCATION
 $app->get('/locations', function () use ($app, $entityManager, $serializer) {
