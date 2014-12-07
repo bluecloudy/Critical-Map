@@ -43,6 +43,13 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
         se.sandbox.subscribe("map:datacontext:location-update", {
 
         });
+		
+		
+		
+		se.sandbox.publish("map:anchor:get", function (latLng) {
+        self.lat(latLng.lat());
+        self.lon(latLng.lng());
+ }, this);
     }
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,
@@ -58,8 +65,8 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
             happen: self.happen(),
             level: self.selectedLevel().name,
 			image: 'image/url',
-			lat: '20',
-			lon: '114'
+			lat: self.lat(),
+			lon: self.lon()
         });
 	}
 
