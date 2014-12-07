@@ -40,7 +40,6 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
             se.sandbox.publish("map:anchor:set", {
                 position: position,
                 draggable: true
-
             });
             se.sandbox.publish("map:setCenter", position);
             se.sandbox.publish("map:setZoom", 14);

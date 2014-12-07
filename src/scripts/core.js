@@ -16,6 +16,22 @@ define([
     'map-infowindow'
 ], function(ko, SE){
 
+    var se = SE()
+        .use('map')
+        .use('map-events')
+        .use('map-markers')
+        .use('map-oms')
+        .use('map-polygons')
+        .use('map-polylines')
+        .use('map-infowindow')
+        .use('map-drawing')
+        .use('map-drawing-shape')
+        .use('map-style-preset')
+        .use('map-geolocation')
+        .use('map-anchor')
+		.use('datacontext')
+        .start();
+
     ko.bindingHandlers.map = {
         init: function (element, valueAccessor) {
             se.sandbox.publish('map:create', element, this);
@@ -50,24 +66,6 @@ define([
             });
         }
     };
-
-
-
-    var se = SE()
-        .use('map')
-        .use('map-events')
-        .use('map-markers')
-        .use('map-oms')
-        .use('map-polygons')
-        .use('map-polylines')
-        .use('map-infowindow')
-        .use('map-drawing')
-        .use('map-drawing-shape')
-        .use('map-style-preset')
-        .use('map-geolocation')
-        .use('map-anchor')
-		.use('datacontext')
-        .start();
 
     return se;
 });

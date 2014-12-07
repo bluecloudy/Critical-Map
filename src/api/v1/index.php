@@ -41,15 +41,23 @@ $app->post('/locations', function () use ($app, $entityManager, $serializer) {
     /**
      * todo: upload photo
      */
-    $photo = $_FILES['photo'];
+//    $photo = $_FILES['photo'];
 
     $location = new Location();
     $location->setTitle($title);
     $location->setLatitude($latitude);
     $location->setLongitude($longitude);
+    $location->setLongitude($longitude);
+    $location->setLevel($level);
+    $location->setCreated(time());
 
     $user =  $user = $entityManager->getRepository('User')->find(1);
     $location->setUser($user);
+    $entityManager->persist($location);
+    $entityManager->flush();
+
+    $jsonContent = $serializer->serialize($location, 'json', SerializationContext::create()->setGroups(array('details')));
+    $app->response->write($jsonContent);
 
 });
 

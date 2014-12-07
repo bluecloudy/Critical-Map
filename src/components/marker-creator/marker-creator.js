@@ -3,6 +3,7 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 	
 	
 	var Map = null;
+	var Anchor = null;
 
 	var cLevel = function(name, id) {
         this.name = name;
@@ -14,7 +15,10 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
         Map = map;
     });
 
-	
+    se.sandbox.subscribe("map:anchor:location-update", function(location){
+        console.log(Anchor);
+        Anchor = location;
+    });
 	
 	  
 	  
@@ -37,12 +41,10 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
             new cLevel("Emergency", 3),
 			new cLevel("Critical", 3),
 			new cLevel("High damage", 4)
-        ]),
+        ]);
 			
 		
-        se.sandbox.subscribe("map:datacontext:location-update", {
 
-        });
     }
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,
@@ -52,14 +54,21 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 	
 	Markercreator.prototype.onSubmit = function(){
 		var self = this;
-		
+        var item = ko.observable();
 		
         se.sandbox.publish("map:datacontext:createNew", {
-            happen: self.happen(),
+            title: self.happen(),
             level: self.selectedLevel().name,
-			image: 'image/url',
-			lat: '20',
-			lon: '114'
+			photo: 'photo/url',
+			latitude: Anchor.lat(),
+			longitude: Anchor.lng()
+        }, item);
+
+        item.subscribe(function(item){
+            var data = item;
+            data.position = new google.maps.LatLng(item.latitude, item.longitude);
+
+            se.sandbox.publish('map:marker:add', data);
         });
 	}
 

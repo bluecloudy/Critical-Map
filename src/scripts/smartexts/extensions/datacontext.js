@@ -31,6 +31,25 @@
         }
 
 
+        // This function allow people find all location base on current location or address
+        function create(data, item){
+            return $.ajax({
+                url: config.rest.locations,
+                type: 'post',
+                dataType: 'json',
+                data: data
+            }).then(querySuccess).fail(queryFail);
+
+            function querySuccess (result){
+                console.log(result);
+                item(result);
+            }
+
+            function queryFail (error){
+                alert(error)
+            }
+        }
+
 
         function getLocations(filter, func){
 
@@ -45,6 +64,6 @@
 
         self.sandbox.subscribe('map:datacontext:find', find, {}, this);
         self.sandbox.subscribe('map:datacontext:getLocations', getLocations, {}, this);
-        self.sandbox.subscribe('map:datacontext:createNew', createNew, {}, this);
+        self.sandbox.subscribe('map:datacontext:createNew', create, {}, this);
     });
 }));
