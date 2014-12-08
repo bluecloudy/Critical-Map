@@ -279,23 +279,45 @@ class Location extends \Location implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getLevel()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLevel', array());
+
+        return parent::getLevel();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLevel($level)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLevel', array($level));
+
+        return parent::setLevel($level);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUser()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
+
+        return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setUser($user)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
 
         return parent::setUser($user);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getReporter()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getReporter', array());
-
-        return parent::getReporter();
     }
 
 }

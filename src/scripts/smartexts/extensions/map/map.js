@@ -66,5 +66,14 @@
         self.sandbox.subscribe('map:setZoom', function(zoom){
             self.Map.setZoom(zoom);
         }, {}, this);
+
+        self.sandbox.subscribe('map:getViewPort', function(func){
+            func(
+                self.Map.getBounds().getNorthEast().lat(),
+                self.Map.getBounds().getNorthEast().lng(),
+                self.Map.getBounds().getSouthWest().lat(),
+                self.Map.getBounds().getSouthWest().lng()
+            );
+        }, {}, this);
     });
 }));

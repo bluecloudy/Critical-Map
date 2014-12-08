@@ -11,7 +11,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 $paths            = array(__DIR__ . '/src');
-$isDevMode        = false;
+$isDevMode        = true;
 $connectionParams = array(
     'driver' => 'pdo_mysql',
     'user'     => 'root',

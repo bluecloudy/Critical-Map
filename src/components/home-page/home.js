@@ -4,9 +4,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
         self.items = ko.observableArray([]);
         self.Map = null;
         self.ready = ko.observable(false);
-        self.userLocation = ko.observable(null);
 
-        //
         self.loadCompleted = ko.observable(false);
         var componentToload = ['filter-form', 'list-locations', 'marker-creator', 'search', 'user-location'];
 
@@ -20,25 +18,27 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
         });
 
 
+        var loaded = [];
         self.loadData = function(conditions){
             var items = ko.observableArray([]);
             items.subscribe(function(items){
                 se.utils.each(items, function(item){
-                    var data = item;
-                    data.position = new google.maps.LatLng(item.latitude, item.longitude);
-                    se.sandbox.publish('map:marker:add', data);
+                    if(!se.utils.contains(loaded, item.id)){
+
+                        loaded.push(item.id);
+
+                        var data = item;
+                        data.position = new google.maps.LatLng(item.latitude, item.longitude);
+                        se.sandbox.publish('map:marker:add', data);
+                    }
                 });
             });
 
+            console.log(conditions);
             se.sandbox.publish('map:datacontext:find', conditions, items, this);
         };
 
         se.sandbox.subscribe("map:created", function(map){
-
-            // Load map data
-            self.loadData({});
-
-
             setTimeout(function(){
                 self.ready(true);
             }, 400);
@@ -50,7 +50,37 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
                 draggable: true
             });
 
-            se.sandbox.publish("map:geolocation:get", self.userLocation);
+            se.sandbox.publish("map:geolocation:get", function(position){
+                se.sandbox.publish("map:anchor:set", {
+                    position: position,
+                    draggable: true
+                });
+                se.sandbox.publish("map:setCenter", position);
+                se.sandbox.publish("map:setZoom", 14);
+
+                // Load data first time
+                self.loadData({
+                    latitude: position.lat(),
+                    longitude: position.lng(),
+                    radius: 5
+                });
+
+            });
+
+            se.sandbox.publish("map:event:on", 'dragend', function(){
+                se.sandbox.publish("map:getCenter", function(position){
+                    self.loadData({
+                        latitude: position.lat(),
+                        longitude: position.lng(),
+                        radius: 5
+                    });
+                });
+
+
+//                se.sandbox.publish("map:setCenter", event.latLng);
+
+//                alert(event.latLng.lat() + ',' + event.latLng.lng());
+            });
 
             // Click to set anchor
 //            se.sandbox.publish("map:event:on", 'click', function(event){
@@ -63,17 +93,6 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 //
 ////                alert(event.latLng.lat() + ',' + event.latLng.lng());
 //            });
-        });
-
-
-        self.userLocation.subscribe(function(position){
-
-            se.sandbox.publish("map:anchor:set", {
-                position: position,
-                draggable: true
-            });
-            se.sandbox.publish("map:setCenter", position);
-            se.sandbox.publish("map:setZoom", 14);
         });
     }
 

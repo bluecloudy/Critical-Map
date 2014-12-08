@@ -39,7 +39,9 @@
                 self.userLocation( new google.maps.LatLng(location[0], location[1]))
             }
 
-            if(self.userLocation()) func(self.userLocation());
+            if(self.userLocation()) {
+                func(self.userLocation());return;
+            }
 
             // Try HTML5 geolocation
             if (navigator.geolocation) {

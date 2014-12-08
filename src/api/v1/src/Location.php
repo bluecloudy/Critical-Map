@@ -11,6 +11,8 @@ use JMS\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity @ORM\Table(name="locations")
+ * @ORM\Entity(repositoryClass="LocationRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Location {
     /**

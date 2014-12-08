@@ -53,7 +53,11 @@ $app->get('/sample', function () use ($app, $entityManager, $serializer) {
 
 # BEGIN LOCATION
 $app->get('/locations', function () use ($app, $entityManager, $serializer) {
-    $locations = $entityManager->getRepository('Location')->findAll();
+    $lat = $app->request->get('latitude');
+    $lng = $app->request->get('longitude');
+    $radius = $app->request->get('radius', 5000);
+
+    $locations = $entityManager->getRepository('Location')->getNearByLocations($lat, $lng, $radius);
     $jsonContent = $serializer->serialize($locations, 'json', SerializationContext::create()->setGroups(array('list')));
     $app->response->write($jsonContent);
 });

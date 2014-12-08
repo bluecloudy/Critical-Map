@@ -10,7 +10,9 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Groups;
 
 /**
+ * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Entity @ORM\Table(name="users")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User {
     /**
