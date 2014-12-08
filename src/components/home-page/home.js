@@ -17,7 +17,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
             }
         });
 
-
+        var radius = 5;
         var loaded = [];
         var levelImages = {
             'Notice': 'images/level/icon-notice.png',
@@ -27,6 +27,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
             'High damage': 'images/level/icon-highdamage.png'
         };
         se.sandbox.subscribe("map:data:load", function(conditions){
+            console.log(conditions);
             var items = ko.observableArray([]);
             items.subscribe(function(items){
                 se.utils.each(items, function(item){
@@ -50,6 +51,35 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 
             self.Map = map;
 
+
+            se.sandbox.publish("map:event:on", 'zoom_changed', function(){
+                var zoom = map.getZoom();
+                if(zoom >= 14 ){
+                    radius = 5;
+                }
+
+                if(zoom < 14 ){
+                    radius = 100;
+                }
+
+                if(zoom < 9 ){
+                    radius = 500;
+                }
+
+                if(zoom < 6 ){
+                    radius = 1500;
+                }
+
+                se.sandbox.publish("map:getCenter", function(position){
+                    se.sandbox.publish("map:data:load",{
+                        latitude: position.lat(),
+                        longitude: position.lng(),
+                        radius: radius
+                    });
+                });
+            });
+
+
             se.sandbox.publish("map:anchor:set", {
                 position: map.getCenter(),
                 draggable: true
@@ -67,7 +97,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
                 se.sandbox.publish("map:data:load",{
                     latitude: position.lat(),
                     longitude: position.lng(),
-                    radius: 5
+                    radius: radius
                 });
 
             });
@@ -77,7 +107,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
                     se.sandbox.publish("map:data:load",{
                         latitude: position.lat(),
                         longitude: position.lng(),
-                        radius: 5
+                        radius: radius
                     });
                 });
 
