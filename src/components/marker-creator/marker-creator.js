@@ -54,7 +54,12 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 	Markercreator.prototype.onSubmit = function(){
 		var self = this;
         var item = ko.observable();
-		
+
+        if(self.happen()=='') {
+            alert("What is happen?");
+            return;
+        }
+
         se.sandbox.publish("map:datacontext:createNew", {
             title: self.happen(),
             level: self.selectedLevel().name,

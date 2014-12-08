@@ -211,3 +211,16 @@ ul.result-list li a.color-level-highdamage {
     font-size: 13px;
     font-weight: 300;
 }
+
+
+/*Responsive*/
+@media (min-width: 768px) and (max-width: 1920px) {
+    .modal-dialog {
+        margin: 30px auto;
+        width: 250px;
+    }
+}
+
+
+
+
