@@ -140,19 +140,31 @@ ul.result-list li a.color-level-highdamage {
 }
 .modal-dialog.location-detail .color-level-notice {
     color: #0ebbff;
+    background: url(../images/level/icon-notice.png) no-repeat left center;
+    padding: 7px 0 7px 40px;
 }
 .modal-dialog.location-detail .color-level-warning {
     color: #8DCA35;
+    background: url(../images/level/icon-warning.png) no-repeat left center;
+    padding: 7px 0 7px 40px;
 }
 .modal-dialog.location-detail .color-level-emergency {
     color: #FFAB00;
+    background: url(../images/level/icon-emergency.png) no-repeat left center;
+    padding: 7px 0 7px 40px;
 }
 .modal-dialog.location-detail .color-level-critical {
     color: #FA5A35;
+    background: url(../images/level/icon-critical.png) no-repeat left center;
+    padding: 7px 0 7px 40px;
 }
 .modal-dialog.location-detail .color-level-highdamage {
     color: red;
+    background: url(../images/level/icon-highdamage.png) no-repeat left center;
+    padding: 7px 0 7px 40px;
 }
+
+
 
 .controls {
     float: left;
