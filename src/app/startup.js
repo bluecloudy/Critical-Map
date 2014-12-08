@@ -24,6 +24,7 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
   ko.components.register('location-detail', { require: 'components/location-detail/location-detail' });
 
     //
+  ko.components.register('loading', { require: 'components/loading/loading' });
   // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
 
   // Start the application
