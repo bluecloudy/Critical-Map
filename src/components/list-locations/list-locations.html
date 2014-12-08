@@ -1,40 +1,16 @@
 <div class="well well-sm list-locations" data-bind="css: {'active': viewdetail}">
-    <div class="row">
+    <div class="">
 
-        <!--ko if: viewdetail-->
-        <div class="col-lg-12 col-sm-12" data-bind="with: selectedItem">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="marker-title" data-bind="text: title"></div>
-                </div>
-                <div class="panel-body">
-                    <img width="32px" height="32px" data-bind="attr:{src: img}" />
-                    <div class="marker-title" data-bind="text: level"></div>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-heading">
-                    Comments
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        <li>Comment 1</li>
-                        <li>Comment 2</li>
-                        <li>Comment 3</li>
-                    </ul>
-                    <textarea name="comment" id="comment" cols="30" rows="3" placeholder="Place a comment..."></textarea>
-                </div>
-            </div>
-        </div>
-        <!--/ko-->
-        <div class="col-lg-12  col-sm-12">
+
+        <div class="">
             <ul class="result-list" data-bind="foreach: items">
                 <li class="clearfix" data-bind="click: $parent.onViewDetail, css: {'active': $parent.selectedItem() == $data}">
-                    <img src="https://pbs.twimg.com/profile_images/423542935368380416/ryEG2fNO_bigger.jpeg" />
-                    <a href="#"  data-bind="text: $data.title"></a>
+
+                    <a href="#"  data-bind="text: $data.title, attr: { 'class': 'color-level-'+ $data.level.replace(' ', '').toLowerCase()}"></a>
                 </li>
             </ul>
         </div>
     </div>
 
 </div>
+
