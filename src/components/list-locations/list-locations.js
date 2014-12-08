@@ -1,42 +1,12 @@
 define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templateMarkup, se) {
 
-    var marker = function (data) {
-        this.title      = data.title || '';
-        this.level      = data.level || '';
-        this.img        = data.img || '';
-        this.position   = data.position || '';
-        this.latitude   = data.latitude || '';
-        this.longitude   = data.longitude || '';
-    };
-
     function ListLocations() {
         var self = this;
         self.selectedItem = ko.observable();
         self.items = ko.observableArray([]);
 
-        self.loadData = function(conditions){
-            var items = ko.observableArray([]);
-            items.subscribe(function(items){
-                se.utils.each(items, function(item){
-                    var data = item;
-                    data.position = new google.maps.LatLng(item.latitude, item.longitude);
-                    se.sandbox.publish('map:marker:add', data);
-                    self.items.push(new marker(data));
-                });
-            });
-
-            se.sandbox.publish('map:datacontext:find', conditions, items, this);
-
-
-        };
-
-
         se.sandbox.subscribe('map:data-update', function(items){
-//            self.items([]);
-//            se.utils.each(items, function(item){
-//                self.items.push(new marker(item));
-//            });
-
+            self.items(items);
         });
 
         //true-> view marker detail
@@ -58,8 +28,8 @@ define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templat
             self.viewdetail(false);
         });
 
-       self.loadData({});
 
+        se.sandbox.publish("component:loaded", 'list-locations');
     }
 
     ListLocations.prototype.dispose = function () {};
