@@ -27,6 +27,7 @@ define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templat
 
             se.sandbox.publish('map:datacontext:find', conditions, items, this);
 
+
         };
 
 
@@ -47,11 +48,10 @@ define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templat
 
             // Panto marker
             se.sandbox.publish('map:setCenter', item.position, this);
+
+            se.sandbox.publish('location:detail', item);
         };
-        self.onClose = function()
-        {
-            self.viewdetail(false);
-        }
+
 
         se.sandbox.publish('map:event:on', 'click', function () {
             self.selectedItem(null);
