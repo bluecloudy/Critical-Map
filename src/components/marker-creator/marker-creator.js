@@ -68,8 +68,17 @@ define(['knockout', 'text!./marker-creator.html', 'core'], function (ko, templat
 			longitude: Anchor.lng()
         }, item);
 
+        var levelImages = {
+            'Notice': 'images/level/icon-notice.png',
+            'Warning': 'images/level/icon-warning.png',
+            'Emergency': 'images/level/icon-emergency.png',
+            'Critical': 'images/level/icon-critical.png',
+            'High damage': 'images/level/icon-highdamage.png'
+        };
+
         item.subscribe(function(item){
             var data = item;
+            data.icon = levelImages[item.level];
             data.position = new google.maps.LatLng(item.latitude, item.longitude);
 
             se.sandbox.publish('map:marker:add', data);
