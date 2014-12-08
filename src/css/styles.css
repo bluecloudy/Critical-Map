@@ -1,3 +1,6 @@
+a,a:hover {
+    list-style: none;
+}
 /*Start Marker-creator*/
 #marker-creator {
     opacity: 0.85;
@@ -118,13 +121,13 @@ ul.result-list li a {
     color: #FD9E0A;
 }*/
 .color-level-notice {
-    color: blue;
+    color: #0ebbff;
 }
 .color-level-warning {
     color: orange;
 }
 .color-level-emergency {
-    color: #ffff00;
+    color: #ffee55;
 }
 .color-level-critical {
     color: #10675D;
