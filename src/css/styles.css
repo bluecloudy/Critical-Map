@@ -1,5 +1,6 @@
-a,a:hover {
+a,a:hover,a:focus {
     list-style: none;
+    text-decoration: none;
 }
 /*Start Marker-creator*/
 #marker-creator {
@@ -74,7 +75,10 @@ form#marker-creator * {
     overflow: auto;
     margin-left: 0;
     padding: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
+
 .list-locations ul {
     padding: 0;
     margin: 0;
@@ -85,9 +89,6 @@ form#marker-creator * {
 }
 .list-locations.active {
     margin-left: 0px;
-}
-.list-locations li.active a,.list-locations li:hover a {
-    color: #4d90fe;
 }
 
 .list-locations #comment {
@@ -112,32 +113,46 @@ ul.result-list li:hover,ul.result-list li.active {
 }
 ul.result-list li a {
     list-style: none;
+    padding-left: 5px;
 }
 .list-locations img {
     float: left;
     width: 32px;
     margin: 0 10px 0 0;
 }
-/*ul.result-list li a {
-    color: #FD9E0A;
-}*/
-.color-level-notice {
+ul.result-list li a {
+    color: #000;
+}
+ul.result-list li a.color-level-notice {
+    border-left: 2px solid #0ebbff;
+}
+ul.result-list li a.color-level-warning {
+    border-left: 2px solid #8DCA35;
+}
+ul.result-list li a.color-level-emergency {
+    border-left: 2px solid #FFAB00;
+}
+ul.result-list li a.color-level-critical {
+    border-left: 2px solid #FA5A35;
+}
+ul.result-list li a.color-level-highdamage {
+    border-left: 2px solid red;
+}
+.modal-dialog.location-detail .color-level-notice {
     color: #0ebbff;
 }
-.color-level-warning {
-    color: orange;
+.modal-dialog.location-detail .color-level-warning {
+    color: #8DCA35;
 }
-.color-level-emergency {
-    color: #ffee55;
+.modal-dialog.location-detail .color-level-emergency {
+    color: #FFAB00;
 }
-.color-level-critical {
-    color: #10675D;
+.modal-dialog.location-detail .color-level-critical {
+    color: #FA5A35;
 }
-.color-level-highdamage {
+.modal-dialog.location-detail .color-level-highdamage {
     color: red;
 }
-
-
 
 .controls {
     float: left;
