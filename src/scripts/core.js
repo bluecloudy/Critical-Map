@@ -5,7 +5,8 @@ define([
     'map',
     'map-events',
     'map-markers',
-    'map-oms',
+    'map-markerclusterer',
+//    'map-oms',
     'map-polygons',
     'map-polylines',
     'map-drawing',
@@ -20,13 +21,14 @@ define([
         .use('map')
         .use('map-events')
         .use('map-markers')
-        .use('map-oms')
+        .use('map-markerclusterer')
+//        .use('map-oms')
         .use('map-polygons')
         .use('map-polylines')
         .use('map-infowindow')
-        .use('map-drawing')
-        .use('map-drawing-shape')
-        .use('map-style-preset')
+//        .use('map-drawing')
+//        .use('map-drawing-shape')
+//        .use('map-style-preset')
         .use('map-geolocation')
         .use('map-anchor')
 		.use('datacontext')
