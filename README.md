@@ -17,7 +17,7 @@ Have you ever been stuck in a traffic jam because there is a fire or an accident
 
 Here provide couple screenshots of project. 
 
-![Koding](http://giangnguyen.koding.io/images/demos/screen1.png "Koding")
+![Koding](https://lh4.googleusercontent.com/0oHtA67hKey76ZxkCQf47TDyhJZOM5KYppyygo_UB-n-KeFUBVfKp8i6CY45giK5-BsdSnk9ra8=w2560-h1670 "Koding")
 
 ## APIs used
 
