@@ -17,6 +17,13 @@ define(['knockout', 'text!./search.html', 'core'], function (ko, templateMarkup,
                 });
 
                 se.sandbox.publish("map:setCenter", place.geometry.location);
+
+                // Load data first time
+                se.sandbox.publish("map:data:load",{
+                    latitude: place.geometry.location.lat(),
+                    longitude: place.geometry.location.lng(),
+                    radius: 5
+                });
             });
         });
 

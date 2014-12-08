@@ -19,7 +19,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 
 
         var loaded = [];
-        self.loadData = function(conditions){
+        se.sandbox.subscribe("map:data:load", function(conditions){
             var items = ko.observableArray([]);
             items.subscribe(function(items){
                 se.utils.each(items, function(item){
@@ -33,10 +33,8 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
                     }
                 });
             });
-
-            console.log(conditions);
             se.sandbox.publish('map:datacontext:find', conditions, items, this);
-        };
+        });
 
         se.sandbox.subscribe("map:created", function(map){
             setTimeout(function(){
@@ -59,7 +57,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
                 se.sandbox.publish("map:setZoom", 14);
 
                 // Load data first time
-                self.loadData({
+                se.sandbox.publish("map:data:load",{
                     latitude: position.lat(),
                     longitude: position.lng(),
                     radius: 5
@@ -69,7 +67,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 
             se.sandbox.publish("map:event:on", 'dragend', function(){
                 se.sandbox.publish("map:getCenter", function(position){
-                    self.loadData({
+                    se.sandbox.publish("map:data:load",{
                         latitude: position.lat(),
                         longitude: position.lng(),
                         radius: 5
