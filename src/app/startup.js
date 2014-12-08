@@ -21,6 +21,9 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
 
   ko.components.register('search', { require: 'components/search/search' });
 
+  ko.components.register('location-detail', { require: 'components/location-detail/location-detail' });
+
+    //
   // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
 
   // Start the application
