@@ -19,15 +19,22 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 
 
         var loaded = [];
+        var levelImages = {
+            'Notice': 'images/level/icon-notice.png',
+            'Warning': 'images/level/icon-warning.png',
+            'Emergency': 'images/level/icon-emergency.png',
+            'Critical': 'images/level/icon-critical.png',
+            'High damage': 'images/level/icon-highdamage.png'
+        };
         se.sandbox.subscribe("map:data:load", function(conditions){
             var items = ko.observableArray([]);
             items.subscribe(function(items){
                 se.utils.each(items, function(item){
                     if(!se.utils.contains(loaded, item.id)){
-
                         loaded.push(item.id);
-
                         var data = item;
+                        data.icon = levelImages[item.level];
+
                         data.position = new google.maps.LatLng(item.latitude, item.longitude);
                         se.sandbox.publish('map:marker:add', data);
                     }

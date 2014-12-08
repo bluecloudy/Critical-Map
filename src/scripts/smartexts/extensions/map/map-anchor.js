@@ -29,7 +29,7 @@
         self.sandbox.subscribe("map:anchor:set", function (data, callback) {
             if (!self.anchorPoint()) {
                 data.map = Map;
-                data.icon = './images/markers/male-2.png';
+//                data.icon = './images/markers/male-2.png';
                 data.title = "Where we go?";
 
                 var marker = new google.maps.Marker(data);
