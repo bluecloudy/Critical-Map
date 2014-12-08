@@ -27,9 +27,11 @@ var require = {
         "map-style-preset":     "scripts/smartexts/extensions/map/map-style-preset",
         "map-geolocation":      "scripts/smartexts/extensions/map/map-geolocation",
         "map-anchor":           "scripts/smartexts/extensions/map/map-anchor",
+        "map-markerclusterer":  "scripts/smartexts/extensions/map/map-markerclusterer",
         "datacontext":          "scripts/smartexts/extensions/datacontext",
+        "MarkerClusterer":      "scripts/Markerclusterer/markerclusterer_compiled",
         "OverlappingMarkerSpiderfier": "scripts/OverlappingMarkerSpiderfier/oms.min",
-        
+
         "text":                  "bower_modules/requirejs-text/text"
     },
     shim: {
