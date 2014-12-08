@@ -91,6 +91,12 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
                 draggable: true
             });
 
+            se.sandbox.publish("map:data:load",{
+                latitude: map.getCenter().lat(),
+                longitude: map.getCenter().lng(),
+                radius: radius
+            });
+
             se.sandbox.publish("map:geolocation:get", function(position){
                 se.sandbox.publish("map:anchor:set", {
                     position: position,
