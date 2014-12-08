@@ -81,6 +81,7 @@ form#marker-creator * {
 }
 .list-locations li {
     list-style: none;
+    cursor: pointer;
 }
 .list-locations.active {
     margin-left: 0px;
