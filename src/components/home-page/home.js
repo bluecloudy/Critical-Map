@@ -6,7 +6,7 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
         self.ready = ko.observable(false);
 
         self.loadCompleted = ko.observable(false);
-        var componentToload = ['filter-form', 'list-locations', 'marker-creator', 'search', 'user-location'];
+        var componentToload = ['list-locations', 'marker-creator', 'search', 'user-location'];
 
         se.sandbox.subscribe("component:loaded", function(component){
             componentToload = se.utils.without(componentToload, component);
@@ -27,7 +27,6 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
             'High damage': 'images/level/icon-highdamage.png'
         };
         se.sandbox.subscribe("map:data:load", function(conditions){
-            console.log(conditions);
             var items = ko.observableArray([]);
             items.subscribe(function(items){
                 se.utils.each(items, function(item){
@@ -45,6 +44,13 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
         });
 
         se.sandbox.subscribe("map:created", function(map){
+            se.sandbox.subscribe('map:marker:onAdd', function(marker){
+                se.sandbox.publish("map:event:on", 'click',  marker, function(){
+                    se.sandbox.publish("location:click", marker.id);
+                });
+            });
+
+
             setTimeout(function(){
                 self.ready(true);
             }, 400);
@@ -117,17 +123,17 @@ define(["knockout", "text!./home.html", "core"], function (ko, homeTemplate, se)
 //                alert(event.latLng.lat() + ',' + event.latLng.lng());
             });
 
-            // Click to set anchor
-//            se.sandbox.publish("map:event:on", 'click', function(event){
-//                se.sandbox.publish("map:anchor:set", {
-//                    position: event.latLng,
-//                    draggable: true
-//                });
-//
-//                se.sandbox.publish("map:setCenter", event.latLng);
-//
-////                alert(event.latLng.lat() + ',' + event.latLng.lng());
-//            });
+//            Click to set anchor
+            se.sandbox.publish("map:event:on", 'click', function(event){
+                se.sandbox.publish("map:anchor:set", {
+                    position: event.latLng,
+                    draggable: true
+                });
+
+                se.sandbox.publish("map:setCenter", event.latLng);
+
+//                alert(event.latLng.lat() + ',' + event.latLng.lng());
+            });
         });
     }
 

@@ -22,6 +22,13 @@ define(['knockout', 'text!./list-locations.html', 'core'], function (ko, templat
             se.sandbox.publish('location:detail', item);
         };
 
+        self.onViewDetailById = function (id) {
+            var item = se.utils.findWhere(self.items(), {id: id});
+            self.onViewDetail(item);
+        };
+
+        se.sandbox.subscribe("location:click", self.onViewDetailById);
+
 
         se.sandbox.publish('map:event:on', 'click', function () {
             self.selectedItem(null);
